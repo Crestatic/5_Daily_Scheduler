@@ -1,12 +1,15 @@
 
-// var timeBlockEl =  $('time-block')
+
 
 var today = moment();
 $('#currentDay').text(today.format('dddd, MMM Do YYYY'));
 
+// var interval = setInterval(currentTime, 1000); //not nessasary
 
-window.onload = currentTime();
-// setInterval(currentTime, 1000);
+currentTime();
+
+// "each" function.  For loop
+// seperate current time function from coloring function
 
 function currentTime() { 
     // var currentHourEl = 13 (Test variable)
@@ -74,6 +77,28 @@ function currentTime() {
     } else $('#5pm').addClass('future');
 }    
 
-// var saveBtnEl = $('.saveBtn');
+var saveBtnEl = $('.saveBtn');
+
+saveBtnEl.click(function(event) {
+    event.preventDefault();
+
+    // timeBlockEl is made to save textEl into local storage under parent ID
+    var timeBlockEl = $(this).parent().attr('id');
+    var textEl = $(this).siblings('.text').val();
+
+    localStorage.setItem(timeBlockEl, JSON.stringify(textEl));
+})
 
 
+
+showSavedText();
+
+function showSavedText () {
+    var timeBlockEl = $('.time-block');
+    timeBlockEl.each(function() {
+        var timeBlockId = $(this).attr('id');
+        var textEl = JSON.parse(localStorage.getItem(timeBlockId));
+
+        $(this).children('.text').val(textEl); 
+    })
+}
