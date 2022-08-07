@@ -1,15 +1,9 @@
 
-
-
 var today = moment();
 $('#currentDay').text(today.format('dddd, MMM Do YYYY'));
 
-// var interval = setInterval(currentTime, 1000); //not nessasary
-
+// function to add color styling to the webpage. Note to self: figure out a better way to do this.
 currentTime();
-
-// "each" function.  For loop
-// seperate current time function from coloring function
 
 function currentTime() { 
     // var currentHourEl = 13 (Test variable)
@@ -77,6 +71,7 @@ function currentTime() {
     } else $('#5pm').addClass('future');
 }    
 
+// button saves data to local storage.  
 var saveBtnEl = $('.saveBtn');
 
 saveBtnEl.click(function(event) {
@@ -90,7 +85,7 @@ saveBtnEl.click(function(event) {
 })
 
 
-
+// Brings up data saved in the local storage. 
 showSavedText();
 
 function showSavedText () {
